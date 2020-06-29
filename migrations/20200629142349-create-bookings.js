@@ -4,33 +4,33 @@ module.exports = {
     await queryInterface.createTable('Bookings', {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        defaultValue: Sequelize.UUIDV4,
+        type: Sequelize.UUID,
       },
       idPlace: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       idUser: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       checkIn: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       checkOut: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('Bookings');
-  }
+  },
 };

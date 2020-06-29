@@ -2,15 +2,23 @@ const express = require('express');
 const router = express.Router();
 const apiRouter = require('./apiRouter');
 
+const bodyParser = require('body-parser');
+
+// Middleware
+router.use(bodyParser.json());
+
+//Page accueil
 router.get('/', (request, response) => {
-  response.send('Hello World !');
+  response.json({ message: 'Hello World !' });
 });
 
+// Routes api
 router.use('/api', apiRouter);
 
 // View page 404, lorsqu'on ne trouve pas l'une des routes
-router.get('*', (request, response) => {
-  response.status(404).render('404');
+router.use('*', (request, response) => {
+  response.status(404).json({
+    error: 'Oups, error !',
+  });
 });
-
 module.exports = router;

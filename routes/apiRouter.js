@@ -1,8 +1,13 @@
 const express = require('express');
 const apiRouter = express.Router();
 
-apiRouter.get('/j1', (req, res) => {
-  res.send('OKKK!!!!!');
+const bodyParser = require('body-parser');
+// Middleware
+apiRouter.use(bodyParser.json());
+
+// Route Login
+apiRouter.get('/login', (req, res) => {
+  res.json({ message: 'OKKK!!!!!' });
 });
 
 module.exports = apiRouter;
