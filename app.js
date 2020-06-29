@@ -1,10 +1,4 @@
-const express = require('express');
-const app = express();
-
-const router = require('./routes');
-
-// ici on appelle les routes du dossier routes
-app.use(router);
+const app = require('./server');
 
 app.listen('4000', (err) => {
   if (err) console.error(err);

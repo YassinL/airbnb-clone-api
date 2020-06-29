@@ -2,6 +2,7 @@ const express = require('express');
 const apiRouter = express.Router();
 
 const bodyParser = require('body-parser');
+
 // Middleware
 apiRouter.use(bodyParser.json());
 
