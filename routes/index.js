@@ -21,4 +21,5 @@ router.use('*', (request, response) => {
     error: 'Oups, error !',
   });
 });
+
 module.exports = router;

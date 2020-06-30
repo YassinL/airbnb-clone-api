@@ -8,11 +8,11 @@ module.exports = {
         defaultValue: Sequelize.UUIDV4,
         type: Sequelize.UUID,
       },
-      id_city: {
+      idCity: {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
-      id_user: {
+      idUser: {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
@@ -32,11 +32,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
-      max_guests: {
+      maxGuests: {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
-      price_by_night: {
+      priceByNight: {
         allowNull: false,
         type: Sequelize.INTEGER,
       },

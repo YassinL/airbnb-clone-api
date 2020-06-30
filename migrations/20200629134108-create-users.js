@@ -5,8 +5,9 @@ module.exports = {
       id: {
         allowNull: false,
         primaryKey: true,
-        defaultValue: Sequelize.UUIDV4,
-        type: Sequelize.UUID,
+        // defaultValue: Sequelize.UUIDV4,
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
       },
       firstName: {
         allowNull: false,
@@ -19,6 +20,7 @@ module.exports = {
       email: {
         allowNull: false,
         type: Sequelize.STRING(255),
+        unique: { args: true, msg: 'Cet email est déjà utilisé' },
       },
       password: {
         allowNull: false,
@@ -36,10 +38,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
-      role : {
+      role: {
         allowNull: false,
         type: Sequelize.STRING(30),
-      }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
