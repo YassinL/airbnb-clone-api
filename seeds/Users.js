@@ -4,7 +4,7 @@ module.exports = () => {
       firstName: 'Laurent',
       lastName: 'Jade',
       email: 'laurent@jade.fr',
-      password: 'toto',
+      password: '1toto',
       city: 'Paris',
       description: 'Bonjour à vous...',
       birthday: '1990-10-10',
