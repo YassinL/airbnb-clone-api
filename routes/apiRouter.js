@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 apiRouter.use(bodyParser.json());
 
 // Route Login
-apiRouter.get('/login', (req, res) => {
+apiRouter.get('/signup', (req, res) => {
   res.json({ message: 'OKKK!!!!!' });
 });
 

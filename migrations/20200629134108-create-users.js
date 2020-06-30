@@ -36,6 +36,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
+      role : {
+        allowNull: false,
+        type: Sequelize.STRING(30),
+      }
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
