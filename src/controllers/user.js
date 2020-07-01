@@ -4,13 +4,20 @@ const Users = model.Users;
 exports.postUser = async (req, res) => {
   const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const PASSWORD_REGEX = /^(?=.*\d).{4,8}$/;
+  const FIRSTNAME_REGEX = /^[a-zA-Z]{1,}$/;
+
   const { firstName, lastName, email, password, city, description, birthday, role } = req.body;
 
   if (firstName === null || firstName === undefined) {
     res.status(400).json({ message: "Le champs firstName n'est pas renseigné" });
   }
+  if (!FIRSTNAME_REGEX.test(firstName)) {
+    return res
+      .status(400)
+      .json({ erreur: 'le champs firstName doit être une chaîne de caractère' });
+  }
   if (!EMAIL_REGEX.test(email)) {
-    return res.status(400).json({ error: "l'email n'est pas valide" });
+    return res.status(400).json({ erreur: "l'email n'est pas valide" });
   }
   if (!PASSWORD_REGEX.test(password)) {
     return res.status(400).json({
