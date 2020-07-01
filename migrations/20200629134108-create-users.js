@@ -12,6 +12,9 @@ module.exports = {
       firstName: {
         allowNull: false,
         type: Sequelize.STRING(50),
+        validate: {
+          is: ['^[a-z]+$', 'i'],
+        },
       },
       lastName: {
         allowNull: false,
@@ -20,7 +23,9 @@ module.exports = {
       email: {
         allowNull: false,
         type: Sequelize.STRING(255),
-        unique: { args: true, msg: 'Cet email est déjà utilisé' },
+        validate: {
+          isEmail: true,
+        },
       },
       password: {
         allowNull: false,
