@@ -1,11 +1,12 @@
 const model = require('../../models');
+const jwtToken = require('../../utils/jwt');
 const Users = model.Users;
 
-exports.postUser = async (req, res) => {
-  const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  const PASSWORD_REGEX = /^(?=.*\d).{4,8}$/;
-  const FIRSTNAME_REGEX = /^[a-zA-Z]{1,}$/;
+const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const PASSWORD_REGEX = /^(?=.*\d).{4,8}$/;
+const FIRSTNAME_REGEX = /^[a-zA-Z]{1,}$/;
 
+exports.signUp = async (req, res) => {
   const { firstName, lastName, email, password, city, description, birthday, role } = req.body;
 
   if (firstName === null || firstName === undefined) {
@@ -41,6 +42,27 @@ exports.postUser = async (req, res) => {
     } else {
       res.status(409).json({
         message: 'Un utilisateur utilisant cette adresse email est déjà enregistré',
+      });
+    }
+  }
+};
+
+exports.signIn = async (req, res) => {
+  console.log(req.body);
+  const { email, password } = req.body;
+
+  if (email === null || password === null) {
+    res.status(400).json({ message: 'Les champs ne sont pas renseignés' });
+  } else {
+    const userFound = await Users.findOne({ where: { email: email } });
+    if (userFound) {
+      res.status(200).json({
+        userId: userFound.id,
+        token: jwtToken.generateTokens,
+      });
+    } else {
+      res.status(401).json({
+        message: "Votre mot de passe n'est pas correct",
       });
     }
   }
