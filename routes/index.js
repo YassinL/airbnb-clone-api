@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const apiRouter = require('./apiRouter');
+const signUpRouter = require('./signUpRouter');
+const signInRouter = require('./signInRouter');
 
 const bodyParser = require('body-parser');
 
@@ -12,9 +13,9 @@ router.get('/', (request, response) => {
   response.json({ message: 'Hello World !' });
 });
 
-// Routes api
-router.use('/api', apiRouter);
-
+// Routes
+router.use('/api', signUpRouter);
+router.use('/api', signInRouter);
 // View page 404, lorsqu'on ne trouve pas l'une des routes
 router.use('*', (request, response) => {
   response.status(404).json({
