@@ -1,11 +1,7 @@
 const express = require('express');
 const signInRouter = express.Router();
-const bodyParser = require('body-parser');
 
 const userController = require('../src/controllers/User');
-
-// Middleware
-signInRouter.use(bodyParser.json());
 
 // Route Login
 signInRouter.get('/signin', (req, res) => {
